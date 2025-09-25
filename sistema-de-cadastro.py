@@ -23,7 +23,7 @@ class Funcionario:
         self.salario = salario
     def aumentar_salario (self, percentual):
         self.salario += self.salario * (percentual/100)
-        print(f"Seu novo salário com um aumento de {percentual}% é de R$ {self.salario:.2f}")
+        print(f"Novo salário com um aumento de {percentual}% é de R$ {self.salario:.2f}")
 
 equipe = []
 
@@ -36,46 +36,67 @@ def cadastrar_funcionario():
         equipe.append(novofuncionario)
 
 def menu():
+    print("-------------------------------------------")
+    print("----------- SISTEMA DE CADASTRO -----------")
+    print("-------------------------------------------")
     while True:
         print("[1] Adicionar um novo funcionário")
         print("[2] Listar todos os funcionários")
         print("[3] Aumentar o salário de um funcionário")
         print("[Sair] Para sair do programa.")
+        print("-------------------------------------------")
         opcao = input("Escolha uma opção: ")
         if opcao == "1":
+            print("-------------------------------------------")
             cadastrar_funcionario()
             repetir = input("Deseja cadastrar mais um funcionário? Digite 1 para sim, ou 2 para não: ")
+            print("-------------------------------------------")
             while repetir != "2":
                 cadastrar_funcionario()
                 repetir = input("Deseja cadastrar mais um funcionário? Digite 1 para sim, ou 2 para não: ")
+                print("-------------------------------------------")
                 if repetir == "2":
+                    print("-------------------------------------------")
                     break
         if opcao == "2":
+            print("-------------------------------------------")
             if not equipe:
                 print("Nenhum funcionário foi cadastrado.")
+                print("-------------------------------------------")
             else:
                 for funcionario in equipe:
                     print(f"Nome do Funcionário: {funcionario.nome}, Cargo: {funcionario.cargo}, Salário: R${funcionario.salario}")
+                    print("-------------------------------------------")
         if opcao == "3":
+            print("-------------------------------------------")
             pesquisar = input("Qual funcionário deseja aplicar o aumento de salário? ")
 
             encontrado = False
 
             for funcionario in equipe:
                 if pesquisar == funcionario.nome:
+                    encontrado = True
                     try:
                         print("Funcionário Encontrado.")
                         print(f"Nome do Funcionário: {funcionario.nome}, Cargo: {funcionario.cargo}, Salário: {funcionario.salario}")
                         percentual = int(input("Digite o percentual desse aumento: "))
                         funcionario.aumentar_salario(percentual)
                         print(f"Salário de {funcionario.nome} aumentado com sucesso!")
+                        print("-------------------------------------------")
                         break
                     except ValueError:
                         print("Percentual inválido. Tente novamente.")
+                        print("-------------------------------------------")
                         break
-                if not encontrado:
-                    print("Funcionário não encontrado.")
-        if opcao == "3":
+            if not encontrado:
+                print("Funcionário não encontrado.")
+                print("-------------------------------------------")
+        if opcao == "Sair":
+            print("-------------------------------------------")
             print("Obrigado por utilizar o programa.")
+            break
 
 menu()
+print("-------------------------------------------")
+print("------------------- FIM -------------------")
+print("-------------------------------------------")
